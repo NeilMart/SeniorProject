@@ -3,7 +3,6 @@ module.exports = {
     // ['@snowpack/plugin-sass' ],
   ],
   mount: {
-    src: '/',
   },
   buildOptions: {
     out: 'build',
