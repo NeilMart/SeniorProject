@@ -8,10 +8,20 @@
     <script type="module" src="./js/main.js"></script>
   </head>
   <body>
-    <header>
-      <h1>Sign In</h1>
+    <header class="title-bar">
+      <h1 class="title">Sign In</h1>
     </header>
-    <main></main>
-    <footer></footer>
+    <main>
+      <form action="./php/login.php" method="post">
+        <input type="text" id="fname" name="fname" placeholder="Username" class="full-width">
+        <input type="text" id="lname" name="lname" placeholder="Password" class="full-width"> 
+        <select id="country" name="country">
+          <option value="teacher">Teacher</option>
+          <option value="admin">Admin</option>
+        </select>
+        <input type="submit" value="Sign In">
+      </form>
+    </main>
+    <footer class="footer">@Produced in 2022</footer>
   </body>
 </html>
