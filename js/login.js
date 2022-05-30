@@ -6,6 +6,8 @@ var errorBox = document.getElementById("error-message");
 
 window.addEventListener("pageshow", function() {
   accessForm.reset();
+  errorText.style.display = "none";
+  errorBox.style.display = "none";
   xmlhttpLO.open("POST", "./php/logout.php", true);
   xmlhttpLO.send();
 });
@@ -19,6 +21,8 @@ accessForm.onsubmit = function(event) {
   xmlhttp.open("POST", "./php/login.php?username=" + username.value + 
                                      "&password=" + password.value, true);
   xmlhttp.send();
+
+  password.value = "";
 }
 
 xmlhttp.onreadystatechange = function() {
