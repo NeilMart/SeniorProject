@@ -67,3 +67,20 @@ form {
 ::-ms-input-placeholder { /* Microsoft Edge */
   color: #546E7A;
 }
+
+.error-message {
+  background-color: #fce4e4;
+  border: 1px solid #fcc2c3;
+  padding: 20px 30px;
+  display: none;
+}
+
+.error-text {
+  color: #cc0033;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 20px;
+  text-shadow: 1px 1px rgba(250,250,250,.3);
+  display: none;
+}

@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+$success = FALSE; 
+
 // Change this to your connection info.
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
@@ -12,13 +15,13 @@ if ( mysqli_connect_errno() ) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 
-if ( !isset($_POST['username'], $_POST['password']) ) {
+if ( !isset($_REQUEST['username'], $_REQUEST['password']) ) {
 	header('Location: ../index.html');
 	exit();
 }
 
 if ($stmt = $con->prepare('SELECT username, password FROM users WHERE username = ?')) {
-	$stmt->bind_param('s', $_POST['username']);
+	$stmt->bind_param('s', $_REQUEST['username']);
 	$stmt->execute();
 	$stmt->store_result();
 
@@ -26,21 +29,29 @@ if ($stmt = $con->prepare('SELECT username, password FROM users WHERE username =
 		$stmt->bind_result($username, $password);
 		$stmt->fetch();
 		
-		if ($_POST['password'] === $password) {
+		if ($_REQUEST['password'] === $password) {
 			session_regenerate_id();
 			$_SESSION['loggedin'] = TRUE;
-			$_SESSION['name'] = $_POST['username'];
-			echo 'Welcome ' . $_SESSION['name'] . '!';
+			$_SESSION['name'] = $_REQUEST['username'];
+			$success = TRUE;
+
+			$response[0] = "Invalid Credentials";
+			$response[1] = $success;
+			$jsonResponse = json_encode($response);
+			echo($jsonResponse);
 		} else {
-			// Incorrect password
-			echo 'Incorrect password!';
+			$response[0] = "Invalid Credentials";
+			$response[1] = $success;
+			$jsonResponse = json_encode($response);
+			echo($jsonResponse);
 		}
 	} else {
-		// Incorrect username
-		echo 'Incorrect username';
+		$response[0] = "Invalid Credentials";
+		$response[1] = $success;
+		$jsonResponse = json_encode($response);
+		echo($jsonResponse);
 	}
 
 	$stmt->close();
 }
-
 ?>
