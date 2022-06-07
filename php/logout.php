@@ -9,6 +9,7 @@ if (ini_get("session.use_cookies")) {
   );
 }
 
-session_destroy();
-echo("success");
+if (isset($_SESSION['loggedin'])) {
+  session_destroy();
+}
 ?>
