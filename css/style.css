@@ -54,6 +54,15 @@ input[type=submit] {
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  padding: 10px;
+  font-size: 30px;
+}
+
+input[type=file] {
+  color: black;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
   font-size: 30px;
 }
 

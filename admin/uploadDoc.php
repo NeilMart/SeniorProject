@@ -13,15 +13,14 @@ if (isset($_SESSION['loggedin'])) {
   </head>
   <body>
     <header class="title-bar">
-      <a class="return" href="./menu.php"><img src="../images/icons8-back-arrow-50.png" alt="Back Arrow"></a>
-      <h1 class="title">Register</h1>
+      <a class="return" href="./register.php"><img src="../images/icons8-back-arrow-50.png" alt="Back Arrow"></a>
+      <h1 class="title">Upload</h1>
       <a class="signout" href="../index.html">Signout</a>
     </header>
     <main>
-      <form>
-        <button type="submit" class="full-width" formaction="./uploadDoc.php">Update School</button>
-        <button type="submit" class="full-width" formaction="">Add Student</button>
-        <button type="submit" class="full-width" formaction="">Remove Student</button>
+      <form action="../php/largeUpload.php" method="POST" enctype="multipart/form-data">
+        <input type="file" class="full-width" id="customFileInput" aria-describedby="customFileInput" name="file">
+        <input type="submit" name="submit" value="Upload" class="full-width">
       </form>
     </main>
     <footer class="footer">@Produced in 2022</footer>
