@@ -18,13 +18,16 @@ if (isset($_SESSION['loggedin'])) {
       <a class="signout" href="../index.html">Signout</a>
     </header>
     <main>
-      <form action="../php/largeUpload.php" method="POST" enctype="multipart/form-data">
+      <div id="error-message" class="error-message">
+        <p id="error-text" class="error-text"></p>
+      </div>
+      <form action="../php/largeUpload.php" method="POST" enctype="multipart/form-data" id="upload-form">
         <input type="file" class="full-width" id="customFileInput" aria-describedby="customFileInput" name="file">
         <input type="submit" name="submit" value="Upload" class="full-width">
       </form>
     </main>
     <footer class="footer">@Produced in 2022</footer>
-    <script type="module" src="../js/main.js"></script>
+    <script type="module" src="../js/studentUpload.js"></script>
   </body>
 </html>
 

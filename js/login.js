@@ -21,7 +21,6 @@ accessForm.onsubmit = function(event) {
   xmlhttp.open("POST", "./php/login.php?username=" + username.value + 
                                      "&password=" + password.value, true);
   xmlhttp.send();
-
   password.value = "";
 }
 

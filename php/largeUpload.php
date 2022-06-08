@@ -1,15 +1,17 @@
 <?php
-    $servername='localhost';
-    $username='root';
-    $password='TiwIsamd8ta.';
-    $dbname = "studentlist";
-    $conn=mysqli_connect($servername,$username,$password,"$dbname");
+$servername='localhost';
+$username='root';
+$password='TiwIsamd8ta.';
+$dbname = "studentlist";
+$conn=mysqli_connect($servername,$username,$password,"$dbname");
+
+$success = false;
 
 if(!$conn) {
   die('Could not Connect MySql Server:' .mysql_error());
 }
  
-if (isset($_POST['submit'])) {
+if (isset($_REQUEST['submit'])) {
   $fileMimes = array(
       'text/x-comma-separated-values',
       'text/comma-separated-values',
@@ -40,8 +42,14 @@ if (isset($_POST['submit'])) {
     }
 
     fclose($csvFile);
-    header("Location: ../admin/uploadDoc.php");
+    $success = true;
+    
+    $response[0] = $success;
+    $jsonResponse = json_encode($response);
+		echo($jsonResponse);
   } else {
-    echo "Please select valid file";
+    $response[0] = $success;
+		$jsonResponse = json_encode($response);
+		echo($jsonResponse);
   }
 }
