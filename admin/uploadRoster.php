@@ -13,9 +13,9 @@ if (isset($_SESSION['loggedin'])) {
   </head>
   <body>
     <header class="title-bar">
-      <a class="return" href="./register.php"><img src="../images/icons8-back-arrow-50.png" alt="Back Arrow"></a>
-      <h1 class="title">Upload</h1>
-      <a class="signout" href="../index.html">Signout</a>
+      <a class="return" href="javascript:history.back()"><img src="../images/icons8-back-arrow-50.png" alt="Back Arrow"></a>
+      <h1 class="title">Update Roster</h1>
+      <a class="signout" href="../index.html"><button class="so-button">Sign Out</button></a>
     </header>
     <main>
       <div id="error-message" class="error-message">

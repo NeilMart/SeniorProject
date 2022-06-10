@@ -5,7 +5,7 @@ var errorBox = document.getElementById("error-message");
 var fileSection = document.getElementById("customFileInput");
 
 window.addEventListener("pageshow", function() {
-  accessForm.reset();
+  fileSection.value = null;
   errorText.style.display = "none";
   errorBox.style.display = "none";
 });
@@ -30,6 +30,7 @@ xmlhttp.onreadystatechange = function() {
       errorText.style.display = "none";
       errorBox.style.display = "none";
       window.alert("File successfully uploaded");
+      window.location.replace("./menu.php");
     }
   }
 }

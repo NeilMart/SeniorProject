@@ -1,6 +1,6 @@
 html, body {
-  margin: 0;
   font-family: sans-serif;
+  margin: 0;
 }
 
 .title-bar {
@@ -9,6 +9,19 @@ html, body {
   display: grid;
   align-items: center;
   grid-template-columns: 1fr 1fr 1fr;
+}
+
+.sticky-title-bar {
+  background: #448AFF;
+  padding: 2px;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 1fr 1fr;
+  position: fixed;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: 999;
 }
 
 .title {
@@ -98,7 +111,7 @@ form {
 }
 
 .full-width {
-  grid-column: 1 / 3;   
+  grid-column: 1 / 3;  
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
@@ -117,16 +130,64 @@ form {
 .error-message {
   background-color: #fce4e4;
   border: 1px solid #fcc2c3;
-  padding: 20px 30px;
+  padding: 5px 0px 5px 20px;
   display: none;
 }
 
 .error-text {
   color: #cc0033;
-  font-size: 13px;
+  font-size: 20px;
   font-weight: bold;
   line-height: 20px;
   text-shadow: 1px 1px rgba(250,250,250,.3);
   display: none;
-  text-align: center;
+}
+
+.styled-table {
+  border-collapse: collapse;
+  margin: 25px 0;
+  font-size: 0.9em;
+  font-size: 20px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+  width: 50%;
+}
+
+.styled-table thead tr {
+  background-color: #005ECB;
+  color: #ffffff;
+  text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+  padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+  border-bottom: thin solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+  border-bottom: 2px solid #005ECB;
+}
+
+.table-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 140px 0 0 0;
+}
+
+.so-button {
+  background-color: #005ECB;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 10px;
 }

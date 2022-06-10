@@ -36,7 +36,7 @@ xmlhttp.onreadystatechange = function() {
       errorText.style.display = "none";
       errorBox.style.display = "none";
       if (destination.value === "teacher") {
-        window.location.href = './teacher/signout.php';
+        window.location.href = './teacher/checkout.php';
       } else if (destination.value === "admin") {
         window.location.href = './admin/menu.php';
       }

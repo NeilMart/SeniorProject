@@ -13,15 +13,15 @@ if (isset($_SESSION['loggedin'])) {
   </head>
   <body>
     <header class="title-bar">
-      <h1 class="title">Menu</h1>
+      <a class="return" href="javascript:history.back()"><img src="../images/icons8-back-arrow-50.png" alt="Back Arrow"></a>
+      <h1 class="title">Add/Remove</h1>
       <a class="signout" href="../index.html"><button class="so-button">Sign Out</button></a>
     </header>
     <main>
       <form>
-        <button type="submit" class="full-width" formaction="./viewRoster.php">View Roster</button>
-        <button type="submit" class="full-width" formaction="./addRemove.php">Add/Remove Students</button>
-        <button type="submit" class="full-width" formaction="">Student Permissions</button>
-        <button type="submit" class="full-width" formaction="">System Settings</button>
+        <button type="submit" class="full-width" formaction="./uploadRoster.php">Upload Roster</button>
+        <button type="submit" class="full-width" formaction="./addStudent.php">Add Student</button>
+        <button type="submit" class="full-width" formaction="./removeStudent.php">Remove Student</button>
       </form>
     </main>
     <footer class="footer">@Produced in 2022</footer>
