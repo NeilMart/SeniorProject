@@ -1,8 +1,9 @@
-var uploadForm = document.getElementById("upload-form");
-var xmlhttp = new XMLHttpRequest();
-var errorText = document.getElementById("error-text");
-var errorBox = document.getElementById("error-message");
+var uploadForm  = document.getElementById("upload-form");
+var errorText   = document.getElementById("error-text");
+var errorBox    = document.getElementById("error-message");
 var fileSection = document.getElementById("customFileInput");
+
+var xmlhttp = new XMLHttpRequest();
 
 window.addEventListener("pageshow", function() {
   fileSection.value = null;

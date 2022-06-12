@@ -1,8 +1,9 @@
-var xmlhttp = new XMLHttpRequest();
-var xmlhttpLO = new XMLHttpRequest();
 var accessForm = document.getElementById("login-form");
-var errorText = document.getElementById("error-text");
-var errorBox = document.getElementById("error-message");
+var errorText  = document.getElementById("error-text");
+var errorBox   = document.getElementById("error-message");
+
+var xmlhttp   = new XMLHttpRequest();
+var xmlhttpLO = new XMLHttpRequest();
 
 window.addEventListener("pageshow", function() {
   accessForm.reset();
@@ -14,6 +15,8 @@ window.addEventListener("pageshow", function() {
 
 accessForm.onsubmit = function(event) {
   event.preventDefault();
+
+  console.log(event.value);
 
   const username = document.getElementById("username");
   const password = document.getElementById("password");
@@ -36,7 +39,7 @@ xmlhttp.onreadystatechange = function() {
       errorText.style.display = "none";
       errorBox.style.display = "none";
       if (destination.value === "teacher") {
-        window.location.href = './teacher/checkout.php';
+        window.location.href = './teacher/homepage.php';
       } else if (destination.value === "admin") {
         window.location.href = './admin/menu.php';
       }
