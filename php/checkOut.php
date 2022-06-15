@@ -17,7 +17,6 @@ if ( !isset($_REQUEST['id']) ) {
 }
 
 $id     = $_REQUEST['id'];
-$time   = $_REQUEST['time'];
 $origin = $_SESSION['name'];
 
 $query = "SELECT origin FROM hallmonitor WHERE id = '" . $id . "'";
@@ -44,8 +43,9 @@ if (mysqli_num_rows($check) == 0) {
 	echo($jsonResponse);
   exit();
 } else if (mysqli_num_rows($total) < 10) {
-	$query = "INSERT INTO hallmonitor (id, origin, destination, timeout) VALUES ('" . $id . "', '" . $origin . "', '" . "TBD" . "', '" . $time . "')";
+	$query = "INSERT INTO hallmonitor (id, origin, destination, timeout) VALUES ('" . $id . "', '" . $origin . "', '" . "TBD" . "', '" . 0000 . "')";
 	mysqli_query($conn, $query);
+	$_SESSION["id"] = $id;
 	$response[0] = true;
 	$jsonResponse = json_encode($response);
 	echo($jsonResponse);

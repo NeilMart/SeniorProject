@@ -191,3 +191,13 @@ form {
   font-size: 15px;
   padding: 10px;
 }
+
+.stu-name {
+  padding: 20px 200px 0px 200px;
+  font-size: 35px;
+}
+
+.stu-generic {
+  padding: 0px 200px 0px 200px;
+  font-size: 20px;
+}

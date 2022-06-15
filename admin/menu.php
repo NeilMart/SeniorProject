@@ -20,8 +20,8 @@ if (isset($_SESSION['loggedin'])) {
       <form>
         <button type="submit" class="full-width" formaction="./viewRoster.php">View Roster</button>
         <button type="submit" class="full-width" formaction="./addRemove.php">Add/Remove Students</button>
-        <button type="submit" class="full-width" formaction="">Student Permissions</button>
-        <button type="submit" class="full-width" formaction="">System Settings</button>
+        <button type="submit" class="full-width" formaction="">Add/Remove Staff</button>
+        <button type="submit" class="full-width" formaction="">Parameters</button>
       </form>
     </main>
     <footer class="footer">@Produced in 2022</footer>

@@ -10,7 +10,8 @@ var errorZone      = document.getElementById("error-message");
 var topErrorText   = document.getElementById("error-text-top");
 var topErrorZone   = document.getElementById("error-message-top");
 
-var xmlhttp = new XMLHttpRequest();
+var xmlhttp   = new XMLHttpRequest();
+var olxmlhttp = new XMLHttpRequest();
 
 checkOutButton.addEventListener("click", grabButtonValue);
 checkInButton.addEventListener("click", grabButtonValue);
@@ -21,6 +22,9 @@ window.addEventListener("pageshow", function() {
   errorZone.style.display = "none";
   topErrorText.style.display = "none";
   topErrorZone.style.display = "none";
+
+  olxmlhttp.open("POST", "../php/coLoad.php", true);
+  olxmlhttp.send();
 });
 
 pageForm.addEventListener("submit", function(event) {
@@ -28,9 +32,9 @@ pageForm.addEventListener("submit", function(event) {
 
   if (isNumeric(studentID.value)) {
     if (linkTarget == "checkout") {
-      var today = new Date();
-      currentTime = Math.round(today.getTime() / 1000 / 60);
-      xmlhttp.open("POST", "../php/checkOut.php?id=" + studentID.value + "&time=" + currentTime, true);
+      // var today = new Date();
+      // currentTime = Math.round(today.getTime() / 1000 / 60);
+      xmlhttp.open("POST", "../php/checkOut.php?id=" + studentID.value, true);
       xmlhttp.send();
       pageForm.reset();
     }
@@ -69,7 +73,7 @@ xmlhttp.onreadystatechange = function() {
     if (decodeResponse[0]) {
       topErrorText.style.display = "none";
       topErrorZone.style.display = "none";
-      window.alert("Checked out");
+      window.location.href = './location.php';
     } else {
       topErrorText.style.display = "block";
       topErrorZone.style.display = "block";
