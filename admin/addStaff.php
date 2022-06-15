@@ -14,18 +14,23 @@ if (isset($_SESSION['loggedin'])) {
   <body>
     <header class="title-bar">
       <a class="return" href="javascript:history.back()"><img src="../images/icons8-back-arrow-50.png" alt="Back Arrow"></a>
-      <h1 class="title">Manage Students</h1>
+      <h1 class="title">Add Staff</h1>
       <a class="signout" href="../index.html"><button class="so-button">Sign Out</button></a>
     </header>
     <main>
-      <form>
-        <button type="submit" class="full-width" formaction="./uploadRoster.php">Upload Roster</button>
-        <button type="submit" class="full-width" formaction="./addStudent.php">Add Student</button>
-        <button type="submit" class="full-width" formaction="./removeStudent.php">Remove Student</button>
+      <div id="error-message-top" class="error-message">
+        <p id="error-text-top" class="error-text"></p>
+      </div>
+      <form id="student-form">
+        <input type="text" name="name" id="name" placeholder="Name" class="full-width" required>
+        <input type="text" name="username" id="username" placeholder="Username" class="full-width" required>
+        <input type="text" name="password" id="password" placeholder="Password" class="full-width" required>
+        <input type="text" name="pin" id="pin" placeholder="PIN" class="full-width" required>
+        <input type="submit" value="Add Staff Member" id="submit" class="full-width">
       </form>
     </main>
     <footer class="footer">@Produced in 2022</footer>
-    <!-- <script type="module" src="../js/main.js"></script> -->
+    <script type="module" src="../js/addStaff.js"></script>
   </body>
 </html>
 

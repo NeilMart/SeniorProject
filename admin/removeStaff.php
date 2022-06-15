@@ -12,20 +12,27 @@ if (isset($_SESSION['loggedin'])) {
     <link rel="stylesheet" href="../css/style.css"/>
   </head>
   <body>
+    <template id="teacher-option">
+      <option id="target-option"></option>
+    </template>
     <header class="title-bar">
       <a class="return" href="javascript:history.back()"><img src="../images/icons8-back-arrow-50.png" alt="Back Arrow"></a>
-      <h1 class="title">Manage Students</h1>
+      <h1 class="title">Remove Staff</h1>
       <a class="signout" href="../index.html"><button class="so-button">Sign Out</button></a>
     </header>
     <main>
-      <form>
-        <button type="submit" class="full-width" formaction="./uploadRoster.php">Upload Roster</button>
-        <button type="submit" class="full-width" formaction="./addStudent.php">Add Student</button>
-        <button type="submit" class="full-width" formaction="./removeStudent.php">Remove Student</button>
+      <div id="error-message-top" class="error-message">
+        <p id="error-text-top" class="error-text"></p>
+      </div>
+      <form id="page-form">
+        <select id="teachers" class="full-width" required>
+          <option selected value="default">-- Choose a username --</option>
+        </select>
+        <input type="submit" id="remove" value="Remove" class="full-width">
       </form>
     </main>
     <footer class="footer">@Produced in 2022</footer>
-    <!-- <script type="module" src="../js/main.js"></script> -->
+    <script type="module" src="../js/removeStaff.js"></script>
   </body>
 </html>
 
