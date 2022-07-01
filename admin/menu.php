@@ -1,3 +1,5 @@
+<!-- The inital splash screen for the admin portion of the application -->
+
 <?php
 session_start();
 if (isset($_SESSION['loggedin'])) {
@@ -18,10 +20,10 @@ if (isset($_SESSION['loggedin'])) {
     </header>
     <main>
       <form>
-        <button type="submit" class="full-width" formaction="./viewRoster.php">View Students</button>
-        <button type="submit" class="full-width" formaction="./addRemove.php">Manage Student Roster</button>
+        <button type="submit" class="full-width" formaction="./viewHallway.php">View Hallway</button>
+        <button type="submit" class="full-width" formaction="./addRemove.php">Manage Students</button>
         <button type="submit" class="full-width" formaction="./staffMenu.php">Manage Staff</button>
-        <button type="submit" class="full-width" formaction="">Parameters</button>
+        <button type="submit" class="full-width" formaction="">Change Preferences</button>
       </form>
     </main>
     <footer class="footer">@Produced in 2022</footer>

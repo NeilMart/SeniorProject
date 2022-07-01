@@ -9,7 +9,7 @@
     die('Could not Connect MySql Server:' .mysql_error());
   }
 
-  $stmt = "SELECT name FROM users";
+  $stmt = "SELECT name FROM users ORDER BY name";
   $result = mysqli_query($db, $stmt);
   
   if ($result == FALSE) { 

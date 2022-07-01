@@ -21,14 +21,17 @@ if (isset($_SESSION['loggedin'])) {
       <a class="signout" href="../index.html"><button class="so-button">Sign Out</button></a>
     </header>
     <main>
+      <div id="error-message-top" class="error-message">
+        <p id="error-text-top" class="error-text"></p>
+      </div>
       <p id="stu-name" class="stu-name"></p>
       <p id="stu-generic" class="stu-generic">is requesting permission to check out to the:</p>
       <form id="page-form">
         <select id="location" class="full-width">
-          <option value="bathroom">Bathroom</option>
+          <option value="Bathroom">Bathroom</option>
           <option value="teacher">Teacher</option>
-          <option value="library">Library</option>
-          <option value="office">Office</option>
+          <option value="Library">Library</option>
+          <option value="Office">Office</option>
         </select>
         <select id="teachers" class="full-width"></select>
         <input type="password" name="pin" id="pin" class="full-width" placeholder="Teacher PIN" required>

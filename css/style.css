@@ -201,3 +201,7 @@ form {
   padding: 0px 200px 0px 200px;
   font-size: 20px;
 }
+
+.remove-entry {
+  cursor: pointer;
+}

@@ -19,9 +19,9 @@ if (isset($_SESSION['loggedin'])) {
     </header>
     <main>
       <form>
-        <button type="submit" class="full-width" formaction="./uploadRoster.php">Upload Roster</button>
+        <button type="submit" class="full-width" formaction="./viewRoster.php">View Roster</button>
+        <button type="submit" class="full-width" formaction="./uploadRoster.php">Update Roster</button>
         <button type="submit" class="full-width" formaction="./addStudent.php">Add Student</button>
-        <button type="submit" class="full-width" formaction="./removeStudent.php">Remove Student</button>
       </form>
     </main>
     <footer class="footer">@Produced in 2022</footer>

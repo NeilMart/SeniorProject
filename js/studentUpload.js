@@ -31,7 +31,7 @@ xmlhttp.onreadystatechange = function() {
       errorText.style.display = "none";
       errorBox.style.display = "none";
       window.alert("File successfully uploaded");
-      window.location.replace("./menu.php");
+      window.location.replace("./addRemove.php");
     }
   }
 }

@@ -11,6 +11,7 @@ var topErrorText   = document.getElementById("error-text-top");
 var topErrorZone   = document.getElementById("error-message-top");
 
 var xmlhttp   = new XMLHttpRequest();
+var cixmlhttp = new XMLHttpRequest();
 var olxmlhttp = new XMLHttpRequest();
 
 checkOutButton.addEventListener("click", grabButtonValue);
@@ -32,14 +33,13 @@ pageForm.addEventListener("submit", function(event) {
 
   if (isNumeric(studentID.value)) {
     if (linkTarget == "checkout") {
-      // var today = new Date();
-      // currentTime = Math.round(today.getTime() / 1000 / 60);
       xmlhttp.open("POST", "../php/checkOut.php?id=" + studentID.value, true);
       xmlhttp.send();
       pageForm.reset();
-    }
-    else {
-
+    } else if (linkTarget == "checkin") {
+      cixmlhttp.open("POST", "../php/checkIn.php?id=" + studentID.value, true);
+      cixmlhttp.send();
+      pageForm.reset();
     }
   }
 });
@@ -74,6 +74,21 @@ xmlhttp.onreadystatechange = function() {
       topErrorText.style.display = "none";
       topErrorZone.style.display = "none";
       window.location.href = './location.php';
+    } else {
+      topErrorText.style.display = "block";
+      topErrorZone.style.display = "block";
+      topErrorText.innerText = decodeResponse[1];
+    }
+  }
+}
+
+cixmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var decodeResponse = JSON.parse(this.responseText);
+    if (decodeResponse[0]) {
+      topErrorText.style.display = "none";
+      topErrorZone.style.display = "none";
+      window.alert("You've signed in");
     } else {
       topErrorText.style.display = "block";
       topErrorZone.style.display = "block";

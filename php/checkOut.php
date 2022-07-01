@@ -19,6 +19,21 @@ if ( !isset($_REQUEST['id']) ) {
 $id     = $_REQUEST['id'];
 $origin = $_SESSION['name'];
 
+$DATABASE_H = 'localhost';
+$DATABASE_U = 'root';
+$DATABASE_P = 'TiwIsamd8ta.';
+$DATABASE_N = 'authentication';
+
+$conn2 = mysqli_connect($DATABASE_H, $DATABASE_U, $DATABASE_P, $DATABASE_N);
+if ( mysqli_connect_errno() ) {
+	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+}
+
+$query = "SELECT name FROM users WHERE username = '" . $origin . "'";
+$check = mysqli_query($conn2, $query);
+$originName = $check->fetch_array(MYSQLI_NUM);
+$name = $originName[0];
+
 $query = "SELECT origin FROM hallmonitor WHERE id = '" . $id . "'";
 $check = mysqli_query($conn, $query);
 
@@ -43,7 +58,7 @@ if (mysqli_num_rows($check) == 0) {
 	echo($jsonResponse);
   exit();
 } else if (mysqli_num_rows($total) < 10) {
-	$query = "INSERT INTO hallmonitor (id, origin, destination, timeout) VALUES ('" . $id . "', '" . $origin . "', '" . "TBD" . "', '" . 0000 . "')";
+	$query = "INSERT INTO hallmonitor (id, origin, destination, timeout) VALUES ('" . $id . "', '" . $name . "', '" . "TBD" . "', '" . 0000 . "')";
 	mysqli_query($conn, $query);
 	$_SESSION["id"] = $id;
 	$response[0] = true;

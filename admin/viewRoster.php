@@ -13,7 +13,7 @@ if (isset($_SESSION['loggedin'])) {
   </head>
   <body>
     <header class="sticky-title-bar">
-    <a class="return" href="javascript:history.back()"><img src="../images/icons8-back-arrow-50.png" alt="Back Arrow"></a>
+      <a class="return" href="javascript:history.back()"><img src="../images/icons8-back-arrow-50.png" alt="Back Arrow"></a>
       <h1 class="title">View Roster</h1>
       <a class="signout" href="../index.html"><button class="so-button">Sign Out</button></a>
     </header>
@@ -24,6 +24,7 @@ if (isset($_SESSION['loggedin'])) {
             <tr>
               <th>Name
               <th>ID
+              <th>Delete
             </tr>
           </thead>
           <tbody>
@@ -50,6 +51,7 @@ if (isset($_SESSION['loggedin'])) {
                 print "<tr>\n";
                 print "  <td>" . $row[0] . "\n";
                 print "  <td>" . $row[1] . "\n";
+                print "  <td id='remove-entry' class='remove-entry'>" . "X" . "\n";
                 print "</tr>\n";
               }
             ?>
@@ -59,7 +61,7 @@ if (isset($_SESSION['loggedin'])) {
       </div>
     </main>
     <footer class="footer">@Produced in 2022</footer>
-    <!-- <script type="module" src="../js/main.js"></script> -->
+    <script type="module" src="../js/viewRoster.js"></script>
   </body>
 </html>
 
