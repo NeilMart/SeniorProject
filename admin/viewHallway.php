@@ -1,7 +1,12 @@
-<!-- Allows an admin to view the hallmonitor, which is a frequently updating 
-list of where students left from and where they are going -->
-
 <?php
+
+/*******************************************************************************
+ * Allows an admin to view the hallmonitor, which is a frequently updating list
+ * of where students left from and where they are going
+ * 
+ * JS: viewHallway.js
+ ******************************************************************************/
+
 session_start();
 if (isset($_SESSION['loggedin'])) {
 ?>
@@ -9,7 +14,7 @@ if (isset($_SESSION['loggedin'])) {
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta http-equiv="refresh" content="60">
+    <meta http-equiv="refresh" content="30">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Senior Project</title>
@@ -30,7 +35,7 @@ if (isset($_SESSION['loggedin'])) {
               <th>Name
               <th>Origin
               <th>Destination
-              <th>Time Out
+              <th class="time-headin">Away Time
             </tr>
           </thead>
           <tbody>
@@ -46,7 +51,7 @@ if (isset($_SESSION['loggedin'])) {
                 die('Could not Connect MySql Server:' .mysql_error());
               }
 
-              $stmt = "SELECT * FROM hallmonitor";
+              $stmt = "SELECT * FROM hallmonitor WHERE destination != '" . "TBD" . "' ORDER BY timeout";
               $result = mysqli_query($db, $stmt);
 
               if ($result == FALSE) { 

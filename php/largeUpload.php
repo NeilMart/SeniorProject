@@ -1,16 +1,23 @@
 <?php
-$servername='localhost';
-$username='root';
-$password='TiwIsamd8ta.';
-$dbname = "studentlist";
-$conn=mysqli_connect($servername,$username,$password,"$dbname");
+
+/*******************************************************************************
+ * Used to upload an entire CSV file representing the student roster
+ * 
+ * JS: studentUpload.js
+ ******************************************************************************/
+
+$DATABASE_HOST = 'localhost';
+$DATABASE_USER = 'root';
+$DATABASE_PASS = 'TiwIsamd8ta.';
+$DATABASE_NAME = 'studentlist';
+
+$conn = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+if (mysqli_connect_errno()) {
+	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+}
 
 $success = false;
 
-if(!$conn) {
-  die('Could not Connect MySql Server:' .mysql_error());
-}
- 
 if (isset($_REQUEST['submit'])) {
   $fileMimes = array(
       'text/x-comma-separated-values',

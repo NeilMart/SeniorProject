@@ -1,21 +1,27 @@
 <?php
 
+/*******************************************************************************
+ * Used to remove students from the application roster
+ * 
+ * JS: viewRoster.js
+ ******************************************************************************/
+
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
 $DATABASE_PASS = 'TiwIsamd8ta.';
 $DATABASE_NAME = 'studentlist';
 
 $conn = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-if ( mysqli_connect_errno() ) {
+if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 
-if ( !isset($_REQUEST['id']) ) {
-	echo("You shouldn't be here");
+if (!isset($_REQUEST['id'])) {
+	header('Location: ../index.html');
 	exit();
 }
 
-$id   = $_REQUEST['id'];
+$id = $_REQUEST['id'];
 
 $query = "SELECT name FROM student WHERE id = '" . $id . "'";
 $check = mysqli_query($conn, $query);

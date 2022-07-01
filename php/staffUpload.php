@@ -1,5 +1,11 @@
 <?php
 
+/*******************************************************************************
+ * Used to upload a staff member onto the list of authenticated users
+ * 
+ * JS: addStaff.js
+ ******************************************************************************/
+
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
 $DATABASE_PASS = 'TiwIsamd8ta.';

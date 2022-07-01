@@ -1,4 +1,10 @@
 <?php
+
+/*******************************************************************************
+ * Mostly used to protect the program from intrusion ... disables the session
+ * once the page is closed
+ ******************************************************************************/
+
 session_start();
 
 if (ini_get("session.use_cookies")) {

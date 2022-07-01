@@ -1,3 +1,7 @@
+<!-- The actual HTML for the sign out homepage
+
+     JS: checkIO.js -->
+
 <?php
 session_start();
 if (isset($_SESSION['loggedin'])) {

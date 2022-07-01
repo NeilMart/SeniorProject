@@ -1,5 +1,11 @@
 <?php
 
+/*******************************************************************************
+ * Used to upload students to the student roster one at a time
+ * 
+ * JS: addStudent.js
+ ******************************************************************************/
+
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
 $DATABASE_PASS = 'TiwIsamd8ta.';
@@ -10,7 +16,7 @@ if ( mysqli_connect_errno() ) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 
-if ( !isset($_REQUEST['name'], $_REQUEST['id']) ) {
+if (!isset($_REQUEST['name'], $_REQUEST['id'])) {
 	echo("You shouldn't be here");
 	exit();
 }

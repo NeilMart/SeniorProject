@@ -1,4 +1,12 @@
 <?php
+
+/*******************************************************************************
+ * Connected to the login homepage, allows students to sign out assuming that 
+ * they exist and also have not yet signed out 
+ *
+ * JS: checkIO.js
+*******************************************************************************/
+
 session_start();
 
 $DATABASE_HOST = 'localhost';
@@ -7,27 +15,22 @@ $DATABASE_PASS = 'TiwIsamd8ta.';
 $DATABASE_NAME = 'studentlist';
 
 $conn = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-if ( mysqli_connect_errno() ) {
+if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 
-if ( !isset($_REQUEST['id']) ) {
-	header("./index.html");
+$conn2 = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, 'authentication');
+if (mysqli_connect_errno()) {
+	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
+}
+
+if (!isset($_REQUEST['id'])) {
+	header('Location: ../index.html');
 	exit();
 }
 
 $id     = $_REQUEST['id'];
 $origin = $_SESSION['name'];
-
-$DATABASE_H = 'localhost';
-$DATABASE_U = 'root';
-$DATABASE_P = 'TiwIsamd8ta.';
-$DATABASE_N = 'authentication';
-
-$conn2 = mysqli_connect($DATABASE_H, $DATABASE_U, $DATABASE_P, $DATABASE_N);
-if ( mysqli_connect_errno() ) {
-	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
-}
 
 $query = "SELECT name FROM users WHERE username = '" . $origin . "'";
 $check = mysqli_query($conn2, $query);

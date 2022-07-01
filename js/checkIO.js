@@ -1,3 +1,12 @@
+/*******************************************************************************
+ * Connected to the sign in homepage, allows students to check out of the class
+ * PHP: checkout.php
+ *      checkIn.php
+ *      coLoad.php
+ * 
+ * HTML: homepage.php
+ ******************************************************************************/
+
 var linkTarget = "";
 var currentTime = 0;
 

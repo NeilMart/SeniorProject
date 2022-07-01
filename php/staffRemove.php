@@ -1,5 +1,11 @@
 <?php
 
+/*******************************************************************************
+ * Used to remove a staff member's account from the list of authenticated users
+ * 
+ * JS: viewStaff.js
+ ******************************************************************************/
+
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
 $DATABASE_PASS = 'TiwIsamd8ta.';

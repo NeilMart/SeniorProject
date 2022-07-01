@@ -1,4 +1,12 @@
 <?php
+
+/*******************************************************************************
+ * Used by the student to officially check out of a classroom, provided the
+ * teacher has provided the correct PIN
+ * 
+ * JS: location.js
+ ******************************************************************************/
+
 session_start();
 
 $DATABASE_HOST = 'localhost';
@@ -7,7 +15,7 @@ $DATABASE_PASS = 'TiwIsamd8ta.';
 $DATABASE_NAME = 'authentication';
 
 $conn = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
-if ( mysqli_connect_errno() ) {
+if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 
