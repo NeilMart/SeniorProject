@@ -1,4 +1,12 @@
 <?php
+
+/*******************************************************************************
+ * Display for the page that allows an admin to upload the entire student roster
+ * at once
+ * 
+ * JS: studentUpload.js
+ ******************************************************************************/
+
 session_start();
 if (isset($_SESSION['loggedin'])) {
 ?>

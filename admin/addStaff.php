@@ -1,4 +1,11 @@
 <?php
+
+/*******************************************************************************
+ * Displays the content for adding staff to the staff roster
+ * 
+ * JS: addStaff.js
+ ******************************************************************************/
+
 session_start();
 if (isset($_SESSION['loggedin'])) {
 ?>

@@ -1,4 +1,12 @@
 <?php
+
+/*******************************************************************************
+ * Allows an admin to view the entire staff roster at once, with the option to
+ * individually remove staff
+ * 
+ * JS: viewStaff.js
+ ******************************************************************************/
+
 session_start();
 if (isset($_SESSION['loggedin'])) {
 ?>

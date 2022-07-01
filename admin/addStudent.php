@@ -1,4 +1,11 @@
 <?php
+
+/*******************************************************************************
+ * Displays the content for adding a student to the student roster
+ * 
+ * JS: addStudent.js
+ ******************************************************************************/
+
 session_start();
 if (isset($_SESSION['loggedin'])) {
 ?>

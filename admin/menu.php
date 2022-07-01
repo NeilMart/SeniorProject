@@ -1,6 +1,10 @@
-<!-- The inital splash screen for the admin portion of the application -->
-
 <?php
+
+/*******************************************************************************
+ * The landing screen for the admin portion of the application, providing access
+ * to all of the admin features
+ ******************************************************************************/
+
 session_start();
 if (isset($_SESSION['loggedin'])) {
 ?>

@@ -1,4 +1,11 @@
 <?php
+
+/*******************************************************************************
+ * Sub-menu that allows an admin to manage the staff roster ... for now
+ * operations can only be done one at a time, which leads to a heavy initial 
+ * setup cost
+ ******************************************************************************/
+
 session_start();
 if (isset($_SESSION['loggedin'])) {
 ?>
@@ -24,7 +31,6 @@ if (isset($_SESSION['loggedin'])) {
       </form>
     </main>
     <footer class="footer">@Produced in 2022</footer>
-    <!-- <script type="module" src="../js/main.js"></script> -->
   </body>
 </html>
 

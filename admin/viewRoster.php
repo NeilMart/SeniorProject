@@ -1,4 +1,12 @@
 <?php
+
+/*******************************************************************************
+ * Allows an admin to view the entire student roster at once, also providing the
+ * ability to individually remove students
+ * 
+ * JS: viewRoster.js
+ ******************************************************************************/
+
 session_start();
 if (isset($_SESSION['loggedin'])) {
 ?>
