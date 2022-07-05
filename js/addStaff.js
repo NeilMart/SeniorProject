@@ -1,3 +1,11 @@
+/*******************************************************************************
+ * Allows the user to add a single staff member at a time to the staff roster
+ * 
+ * PHP: staffUpload.php
+ * 
+ * HTML: addStaff.php
+ ******************************************************************************/
+
 var pageForm     = document.getElementById("student-form");
 var name         = document.getElementById("name");
 var username     = document.getElementById("username");

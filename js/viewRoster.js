@@ -1,3 +1,12 @@
+/*******************************************************************************
+ * Allows the user to view all of the students at one time, with the option to
+ * them individually
+ * 
+ * PHP: removeTarget.php
+ * 
+ * HTML: viewRoster.php
+ ******************************************************************************/
+
 var triggerRemoval = document.getElementsByClassName("remove-entry");
 var timeSection = document.getElementsByClassName("time");
 

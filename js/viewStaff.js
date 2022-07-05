@@ -1,3 +1,12 @@
+/*******************************************************************************
+ * Allows the admin to view all of the staff members at once, with the option to
+ * individually remove them
+ * 
+ * PHP: staffRemove.php
+ * 
+ * HTML: viewStaff.php
+ ******************************************************************************/
+
 var triggerRemoval = document.getElementsByClassName("remove-entry");
 
 var xmlhttp = new XMLHttpRequest();

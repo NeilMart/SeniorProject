@@ -1,5 +1,7 @@
 /*******************************************************************************
- * Connected to the sign in homepage, allows students to check out of the class
+ * Connected to the sign in homepage, allows students to check out of or into 
+ * the class
+ * 
  * PHP: checkout.php
  *      checkIn.php
  *      coLoad.php

@@ -1,3 +1,14 @@
+/*******************************************************************************
+ * Allows a user to login to the application, logging out the previous user
+ * whenever the page is loaded ... in theory this should increase the security
+ * of the application
+ * 
+ * PHP: logout.php
+ *      login.php
+ * 
+ * HTML: index.html
+ ******************************************************************************/
+
 var accessForm = document.getElementById("login-form");
 var errorText  = document.getElementById("error-text");
 var errorBox   = document.getElementById("error-message");

@@ -1,3 +1,12 @@
+/*******************************************************************************
+ * This is the software that allows the user to upload an entire student roster
+ * at once
+ * 
+ * PHP: largeUpload.php
+ * 
+ * HTML: uploadRoster.php
+ ******************************************************************************/
+
 var uploadForm  = document.getElementById("upload-form");
 var errorText   = document.getElementById("error-text");
 var errorBox    = document.getElementById("error-message");

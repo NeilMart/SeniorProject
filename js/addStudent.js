@@ -1,3 +1,11 @@
+/*******************************************************************************
+ * Allows the user to add a single student at a time to the student roster
+ * 
+ * PHP: singleUpload.php
+ * 
+ * HTML: addStudent.php
+ ******************************************************************************/
+
 var pageForm     = document.getElementById("student-form");
 var studentID    = document.getElementById("student-id");
 var name         = document.getElementById("student-name");

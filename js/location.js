@@ -1,6 +1,12 @@
 /*******************************************************************************
- * Deals with the ability of a student to choose where they will go - requires
+ * Deals with the ability of a student to choose where they will go - requires a
  * teacher PIN
+ * 
+ * PHP: loLoad.php
+ *      returnNames.php
+ *      releaseStudent.php
+ * 
+ * HTML: location.php
  ******************************************************************************/
 
 var linkTarget = "";
