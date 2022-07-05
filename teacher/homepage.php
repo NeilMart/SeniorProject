@@ -1,8 +1,11 @@
-<!-- The actual HTML for the sign out homepage
-
-     JS: checkIO.js -->
-
 <?php
+
+/*******************************************************************************
+ * The section of code that allows the user to view the sign out homepage
+ * 
+ * JS: checkIO.js
+ ******************************************************************************/
+
 session_start();
 if (isset($_SESSION['loggedin'])) {
 ?>

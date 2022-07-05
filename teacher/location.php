@@ -1,4 +1,12 @@
 <?php
+
+/*******************************************************************************
+ * Section of the code that actually allows a student to check out of the 
+ * classroom. Displays their name and gives them options for checkout locations
+ * 
+ * JS: location.js
+ ******************************************************************************/
+
 session_start();
 if (isset($_SESSION['loggedin'])) {
 ?>
