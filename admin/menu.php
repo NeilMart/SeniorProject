@@ -31,7 +31,6 @@ if (isset($_SESSION['loggedin'])) {
       </form>
     </main>
     <footer class="footer">@Produced in 2022</footer>
-    <!-- <script type="module" src="../js/main.js"></script> -->
   </body>
 </html>
 

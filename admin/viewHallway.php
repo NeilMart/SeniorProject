@@ -35,40 +35,56 @@ if (isset($_SESSION['loggedin'])) {
               <th>Name
               <th>Origin
               <th>Destination
-              <th class="time-headin">Away Time
+              <th>Away Time
             </tr>
           </thead>
           <tbody>
-
             <?php
-              $servername='localhost';
-              $username='root';
-              $password='TiwIsamd8ta.';
-              $dbname = "studentlist";
-              $db = mysqli_connect($servername,$username,$password,"$dbname");
 
-              if(!$db) {
-                die('Could not Connect MySql Server:' .mysql_error());
+            /*******************************************************************
+             * Dynamically connects to the SQL Hallmonitor and displays the
+             * information in an HTML table
+             ******************************************************************/
+
+              $DATABASE_HOST = 'localhost';
+              $DATABASE_USER = 'root';
+              $DATABASE_PASS = 'TiwIsamd8ta.';
+              $DATABASE_NAME = 'studentlist';
+              
+              $conn = mysqli_connect($DATABASE_HOST, $DATABASE_USER, $DATABASE_PASS, $DATABASE_NAME);
+              if (mysqli_connect_errno()) {
+                exit('Failed to connect to MySQL: ' . mysqli_connect_error());
               }
 
+              // Generate a list of students ordered by the amount of time that
+              // they've been checked out ... don't show students who are still
+              // navigating the menus
               $stmt = "SELECT * FROM hallmonitor WHERE destination != '" . "TBD" . "' ORDER BY timeout";
-              $result = mysqli_query($db, $stmt);
+              $result = mysqli_query($conn, $stmt);
 
               if ($result == FALSE) { 
                 die ("could not execute statement $stmt<br />");
               }
 
+              // Fetch results from the query one row at a time, using them to
+              // populate the rows of the HTML table
               while ($row = $result->fetch_row()) {
+
+                // I don't want to show a list of IDs, so I use the ID data to
+                // grab the student's names
                 $stmt   = "SELECT name FROM student WHERE id = '" . $row[0] ."'";
-                $output = mysqli_query($db, $stmt);
+                $output = mysqli_query($conn, $stmt);
                 $results = $output->fetch_array(MYSQLI_NUM);
 
+                // I have to generate an empty cell that contains the actual
+                // time data at checkout ... I then use this cell to generate
+                // data that is actually displayed, which is time since checkout
                 print "<tr>\n";
-                print "  <td>" . $results[0] . "\n"; // name
-                print "  <td>" . $row[1] . "\n";     // origin
-                print "  <td>" . $row[2] . "\n";     // destination
-                print "  <td id='time' class='time'> \n";         // time out
-                print "  <td class='noshow'>" . $row[3] . "\n";
+                print "  <td>" . $results[0] . "\n";            // name
+                print "  <td>" . $row[1] . "\n";                // origin
+                print "  <td>" . $row[2] . "\n";                // destination
+                print "  <td id='time' class='time'> \n";       // time out
+                print "  <td class='noshow'>" . $row[3] . "\n"; // non-visible
                 print "</tr>\n";
               }
             ?>
