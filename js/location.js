@@ -68,13 +68,11 @@ namesxmlhttp.onreadystatechange = function() {
 function buildOption(item) {
   var name = item[0];
 
-  if (name != "Admin") {
-    var clone = teacherTemplate.content.cloneNode(true);
-    var option = clone.getElementById("target-option");
-    option.value = name;
-    option.innerText = name;
-    teacherSelection.appendChild(clone);
-  }
+  var clone = teacherTemplate.content.cloneNode(true);
+  var option = clone.getElementById("target-option");
+  option.value = name;
+  option.innerText = name;
+  teacherSelection.appendChild(clone);
 }
 
 selectMenu.addEventListener("change", function() {

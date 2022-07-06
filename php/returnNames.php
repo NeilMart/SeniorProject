@@ -7,6 +7,8 @@
  * JS: location.js
  ****************************************************************************/
 
+session_start();
+
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
 $DATABASE_PASS = 'TiwIsamd8ta.';
@@ -17,7 +19,8 @@ if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 
-$stmt = "SELECT name FROM users ORDER BY name";
+$name = $_SESSION['name'];
+$stmt = "SELECT name FROM users WHERE username != '" . $name . "' AND username != '" . "admin" . "' ORDER BY name";
 $result = mysqli_query($conn, $stmt);
 
 if ($result == FALSE) { 
