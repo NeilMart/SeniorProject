@@ -9,12 +9,21 @@
 
 var triggerRemoval = document.getElementsByClassName("remove-entry");
 
-var xmlhttp = new XMLHttpRequest();
+var xmlhttp = new XMLHttpRequest(); // AJAX that is used to remove staff
 
 for (var i = 0; i < triggerRemoval.length; i++) {
+
+  // Some wacky code that adds an "onclick" event listener to a touch point
+  // contained in every row of the table
   triggerRemoval[i].addEventListener("click", function() {
+
+    // Due to the nature of an HTML table, I can get away with just looking at 
+    // row adjacent table entries
     var name     = this.previousElementSibling.innerText;
     var username = this.previousElementSibling.previousElementSibling.innerText;
+
+    // Confirmation before deletion is typically a good thing, especially given
+    // the accident potential of my current input method
     if (window.confirm("Are you sure you want to delete " + name + "?")) {
       xmlhttp.open("POST", "../php/staffRemove.php?name=" + username, true);
       xmlhttp.send();
@@ -22,6 +31,7 @@ for (var i = 0; i < triggerRemoval.length; i++) {
   })
 }
 
+// Reload the page every time an entry is deleted
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     location.reload();

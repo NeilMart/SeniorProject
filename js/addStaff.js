@@ -14,7 +14,7 @@ var pin          = document.getElementById("pin");
 var topErrorText = document.getElementById("error-text-top");
 var topErrorZone = document.getElementById("error-message-top");
 
-var xmlhttp = new XMLHttpRequest();
+var xmlhttp = new XMLHttpRequest(); // AJAX used to send a SQL request
 
 window.addEventListener("pageshow", function() {
   pageForm.reset();
@@ -40,7 +40,7 @@ xmlhttp.onreadystatechange = function() {
       topErrorText.style.display = "none";
       topErrorZone.style.display = "none";
       window.alert("Staff successfully added");
-    } else {
+    } else { // something went wrong when you tried to add a staff member
       topErrorText.style.display = "block";
       topErrorZone.style.display = "block";
       topErrorText.innerText = decodeResponse[1];

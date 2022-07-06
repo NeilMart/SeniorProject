@@ -13,21 +13,22 @@ var accessForm = document.getElementById("login-form");
 var errorText  = document.getElementById("error-text");
 var errorBox   = document.getElementById("error-message");
 
-var xmlhttp   = new XMLHttpRequest();
-var xmlhttpLO = new XMLHttpRequest();
+var xmlhttp   = new XMLHttpRequest(); // AJAX used to log in the user
+var xmlhttpLO = new XMLHttpRequest(); // AJAX used to logout the user
 
 window.addEventListener("pageshow", function() {
   accessForm.reset();
   errorText.style.display = "none";
   errorBox.style.display = "none";
+
+  // Whenever this page is displayed, logout the current user ... this works
+  // well both from functional and user points of view
   xmlhttpLO.open("POST", "./php/logout.php", true);
   xmlhttpLO.send();
 });
 
 accessForm.onsubmit = function(event) {
   event.preventDefault();
-
-  console.log(event.value);
 
   const username = document.getElementById("username");
   const password = document.getElementById("password");
@@ -45,13 +46,16 @@ xmlhttp.onreadystatechange = function() {
       errorText.style.display = "block";
       errorBox.style.display = "block";
       errorText.innerText = decodeResponse[0];
-    } else {
+    } else { // the user provided valid credentials
       const destination = document.getElementById("status");
       errorText.style.display = "none";
       errorBox.style.display = "none";
-      if (destination.value === "teacher") {
+
+      // The application's default destination is the signout splash screen, but
+      // certain approved users might get thrown onto the admin page instead
+      if (destination.value == "teacher") {
         window.location.href = './teacher/homepage.php';
-      } else if (destination.value === "admin") {
+      } else if (destination.value == "admin") {
         window.location.href = './admin/menu.php';
       }
     }

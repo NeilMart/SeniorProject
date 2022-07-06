@@ -14,7 +14,7 @@ var errorZone    = document.getElementById("error-message");
 var topErrorText = document.getElementById("error-text-top");
 var topErrorZone = document.getElementById("error-message-top");
 
-var xmlhttp = new XMLHttpRequest();
+var xmlhttp = new XMLHttpRequest(); // AJAX used to send a SQL request
 
 window.addEventListener("pageshow", function() {
   pageForm.reset();
@@ -24,6 +24,8 @@ window.addEventListener("pageshow", function() {
   topErrorZone.style.display = "none";
 });
 
+// Very simple one-line function that is used throughout the project to verify
+// numerical user inputs
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
 }
@@ -35,7 +37,7 @@ studentID.addEventListener("input", function() {
     studentID.style.border = 'none';
     errorText.style.display = "none";
     errorZone.style.display = "none";
-  } else {
+  } else { // IDs pretty much have to be numbers, so...
     studentID.style.border = '5px solid red'
     errorText.style.display = "block";
     errorZone.style.display = "block";
@@ -47,6 +49,9 @@ studentID.addEventListener("input", function() {
 pageForm.onsubmit = function(event) {
   event.preventDefault();
 
+  // Double verification might seem excessive, but even in my simple testing I 
+  // found ways to get around my first line of defense. This just catches 
+  // everything that misses the net, at least for now
   if (isNumeric(studentID.value)) {
     xmlhttp.open("POST", "../php/singleUpload.php?name=" + name.value + 
                                       "&id=" + studentID.value, true);
@@ -62,7 +67,7 @@ xmlhttp.onreadystatechange = function() {
       topErrorText.style.display = "none";
       topErrorZone.style.display = "none";
       window.alert("Student successfully added");
-    } else {
+    } else { // Something went wrong when you tried to add the student
       topErrorText.style.display = "block";
       topErrorZone.style.display = "block";
       topErrorText.innerText = decodeResponse[1];

@@ -12,10 +12,11 @@ var errorText   = document.getElementById("error-text");
 var errorBox    = document.getElementById("error-message");
 var fileSection = document.getElementById("customFileInput");
 
-var xmlhttp = new XMLHttpRequest();
+var xmlhttp = new XMLHttpRequest(); // AJAX that handles the .csv file / SQL
 
 window.addEventListener("pageshow", function() {
   fileSection.value = null;
+
   errorText.style.display = "none";
   errorBox.style.display = "none";
 });
@@ -36,10 +37,13 @@ xmlhttp.onreadystatechange = function() {
       errorText.style.display = "block";
       errorBox.style.display = "block";
       errorText.innerText = "Unsupported file type";
-    } else {
+    } else { // the user provided a valid file
       errorText.style.display = "none";
       errorBox.style.display = "none";
       window.alert("File successfully uploaded");
+
+      // Throw the user back to the main menu, as they probably don't need to be
+      // here anymore
       window.location.replace("./addRemove.php");
     }
   }
