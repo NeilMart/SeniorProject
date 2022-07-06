@@ -65,8 +65,8 @@ if (isset($_SESSION['loggedin'])) {
               // the table
               while ($row = $result->fetch_row()) {
                 print "<tr>\n";
-                print "  <td>" . $row[0] . "\n"; // name
-                print "  <td>" . $row[1] . "\n"; // username
+                print "  <td>" . $row[0] . "\n"; // username
+                print "  <td>" . $row[1] . "\n"; // name
 
                 // This is a feature that allows the admin to remove a student
                 // by clicking on an "x" that is on the far right of their entry
