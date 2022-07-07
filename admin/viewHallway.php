@@ -63,7 +63,7 @@ if (isset($_SESSION['loggedin'])) {
               $result = mysqli_query($conn, $stmt);
 
               if ($result == FALSE) { 
-                die ("could not execute statement $stmt<br />");
+                die("could not execute statement $stmt<br />");
               }
 
               // Fetch results from the query one row at a time, using them to

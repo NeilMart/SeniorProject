@@ -16,8 +16,6 @@ if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 
-$success = false;
-
 if (isset($_REQUEST['submit'])) {
   $fileMimes = array(
       'text/x-comma-separated-values',
@@ -45,17 +43,20 @@ if (isset($_REQUEST['submit'])) {
       $query = "SELECT name FROM student WHERE id = '" . $getData[1] . "'";
       $check = mysqli_query($conn, $query);
 
+      if ($check == FALSE) { 
+        die("could not execute statement $query<br />");
+      }
+
       mysqli_query($conn, "INSERT INTO student (name, id) VALUES ('" . $name . "', '" . $id . "')");
     }
 
     fclose($csvFile);
-    $success = true;
     
-    $response[0] = $success;
+    $response[0] = true;
     $jsonResponse = json_encode($response);
 		echo($jsonResponse);
   } else {
-    $response[0] = $success;
+    $response[0] = false;
 		$jsonResponse = json_encode($response);
 		echo($jsonResponse);
   }

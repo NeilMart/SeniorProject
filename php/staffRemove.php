@@ -16,24 +16,24 @@ if ( mysqli_connect_errno() ) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 
-if ( !isset($_REQUEST['name']) ) {
-	echo("You shouldn't be here");
+// Don't really want to try and grab a variable that doesn't exist
+if (!isset($_REQUEST['name'])) {
+	echo('Location: ../index.html');
 	exit();
 }
 
 $name = $_REQUEST['name'];
 
-if ($name == "default") {
-  $response[0] = false;
-  $response[1] = "Please select a username";
-  $jsonResponse = json_encode($response);
-  echo($jsonResponse);
-  exit();
-}
-
+// Uses the provided name to find the username of the teacher that we are
+// looking to remove
 $query = "SELECT username FROM users WHERE username = '" . $name . "'";
 $check = mysqli_query($conn, $query);
 
+if ($check == FALSE) { 
+  die ("could not execute statement $query<br />");
+}
+
+// If the provided name did not return a username, the given user must not exist
 if (mysqli_num_rows($check) == 0) {
 	$response[0] = false;
   $response[1] = "Username not found";
@@ -42,8 +42,14 @@ if (mysqli_num_rows($check) == 0) {
   exit();
 }
 
+// Now that we know this staff member is a real person, it is time to make them
+// a not real person
 $query = "DELETE FROM users WHERE username = '" . $name . "'";
 $check = mysqli_query($conn, $query);
+
+if ($check == FALSE) { 
+  die ("could not execute statement $query<br />");
+}
 
 $response[0] = true;
 $jsonResponse = json_encode($response);

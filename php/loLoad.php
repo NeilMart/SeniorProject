@@ -20,6 +20,8 @@ if (mysqli_connect_errno()) {
 	exit('Failed to connect to MySQL: ' . mysqli_connect_error());
 }
 
+// This is a different method of parameter existence checking, though it worked
+// well for this specific application
 if (!isset($_SESSION["id"])) {
   $response[0] = false;
   $encodedResponse = json_encode($response);
@@ -28,8 +30,15 @@ if (!isset($_SESSION["id"])) {
 }
 
 $id = $_SESSION["id"];
+
+// This uses the student's ID to grab their name from the database
 $query = "SELECT name FROM student WHERE id = $id";
 $check = mysqli_query($conn, $query);
+
+if ($check == FALSE) { 
+  die("could not execute statement $query<br />");
+}
+
 $results = $check->fetch_array(MYSQLI_NUM);
 
 $response[0] = true;

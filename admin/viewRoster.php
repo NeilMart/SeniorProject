@@ -58,7 +58,7 @@ if (isset($_SESSION['loggedin'])) {
               $result = mysqli_query($conn, $stmt);
               
               if ($result == FALSE) { 
-                die ("could not execute statement $stmt<br />");
+                die("could not execute statement $stmt<br />");
               }
 
               // Go through the results one at a time, using them to populate
