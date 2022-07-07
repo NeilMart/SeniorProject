@@ -19,5 +19,17 @@ for (var i = 0; i < noShow.length; i++) {
 // Creates a new entry in the table showing the much more useful time since the
 // student has checked out
 for (var i = 0; i < timeSection.length; i++) {
-  timeSection[i].innerText = (currentTime - noShow[i].innerText) + " minutes";
+  var wordChoice = "";
+  var time = currentTime - noShow[i].innerText;
+
+  // This wasn't very necessary, but I didn't like reading "1 minutes" all the
+  // time ... so this fixes that
+  if (time == '1') {
+    wordChoice = "minute";
+  } else {
+    wordChoice = "minutes";
+  }
+
+  // Combine the student's time away from the office with the correct identifier
+  timeSection[i].innerText = time + " " + wordChoice;
 }
