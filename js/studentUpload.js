@@ -41,10 +41,8 @@ xmlhttp.onreadystatechange = function() {
       errorText.style.display = "none";
       errorBox.style.display = "none";
       window.alert("File successfully uploaded");
-
-      // Throw the user back to the main menu, as they probably don't need to be
-      // here anymore
-      window.location.replace("./addRemove.php");
+      history.back();
+      history.back();
     }
   }
 }

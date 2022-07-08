@@ -1,8 +1,7 @@
 <?php
 
 /*******************************************************************************
- * The landing screen for the admin portion of the application, providing access
- * to all of the admin features
+ * Navigational menu for student permissions
  ******************************************************************************/
 
 session_start();
@@ -19,15 +18,14 @@ if (isset($_SESSION['loggedin'])) {
   </head>
   <body>
     <header class="title-bar">
-      <h1 class="title">Menu</h1>
+      <a class="return" href="javascript:history.back()"><img src="../images/icons8-back-arrow-50.png" alt="Back Arrow"></a>
+      <h1 class="title">Student Permissions</h1>
       <a class="signout" href="../index.html"><button class="so-button">Sign Out</button></a>
     </header>
     <main>
       <form>
-        <button type="submit" class="full-width" formaction="./viewHallway.php">View Hallway</button>
-        <button type="submit" class="full-width" formaction="./addRemove.php">Manage Students</button>
-        <button type="submit" class="full-width" formaction="./staffMenu.php">Manage Staff</button>
-        <button type="submit" class="full-width" formaction="./stuPermission.php">Student Permissions</button>
+        <button type="submit" class="full-width" formaction="viewPermissions.php">View Existing</button>
+        <button type="submit" class="full-width" formaction="addNewPermission.php">Add New</button>
       </form>
     </main>
     <footer class="footer">@Produced in 2022</footer>

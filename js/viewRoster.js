@@ -8,7 +8,6 @@
  ******************************************************************************/
 
 var triggerRemoval = document.getElementsByClassName("remove-entry");
-var timeSection = document.getElementsByClassName("time");
 
 var xmlhttp = new XMLHttpRequest(); // AJAX that is used to remove a student
 

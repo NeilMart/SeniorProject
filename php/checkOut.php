@@ -91,6 +91,10 @@ if (mysqli_num_rows($check) == 0) {
   exit();
 } 
 
+// else if () {
+// 
+// }
+
 // The student exists, but they can only be released if there are fewer than ten
 // students in the halls at this point in time
 else if (mysqli_num_rows($total) < 10) {

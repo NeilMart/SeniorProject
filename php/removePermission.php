@@ -3,7 +3,7 @@
 /*******************************************************************************
  * Used to remove students from the application roster
  * 
- * JS: viewRoster.js
+ * JS: viewPermissions.js
  ******************************************************************************/
 
 $DATABASE_HOST = 'localhost';
@@ -17,41 +17,36 @@ if (mysqli_connect_errno()) {
 }
 
 // Don't really want to try and grab a variable that doesn't exist
-if (!isset($_REQUEST['id'])) {
+if (!isset($_REQUEST['name1'], $_REQUEST['name2'])) {
 	header('Location: ../index.html');
 	exit();
 }
 
-$id = $_REQUEST['id'];
+$name1 = $_REQUEST['name1'];
+$name2 = $_REQUEST['name2'];
 
-// This uses the student's ID to grab their name from the database
-$query = "SELECT name FROM student WHERE id = '" . $id . "'";
+// This uses the student's name to grab their ID from the database
+$query = "SELECT id FROM student WHERE name = '" . $name1 . "'";
 $check = mysqli_query($conn, $query);
 
 if ($check == FALSE) { 
 	die("could not execute statement $query<br />");
 }
 
-// If nothing is returned using the ID, the student must not exist
-if (mysqli_num_rows($check) == 0) {
-	$response[0] = false;
-  $response[1] = "No student with that ID was found";
-	$jsonResponse = json_encode($response);
-	echo($jsonResponse);
-  exit();
-}
+$results = $check->fetch_array(MYSQLI_NUM);
 
-// Now that I know that the student exists, I can make them not exist
-$query = "DELETE FROM student WHERE id = '" . $id . "'";
+// This uses the 2nd student's name to grab their ID from the database
+$query = "SELECT id FROM student WHERE name = '" . $name2 . "'";
 $check = mysqli_query($conn, $query);
 
 if ($check == FALSE) { 
 	die("could not execute statement $query<br />");
 }
 
-// I need to make sure that I also remove their existence in the permissions
-// list
-$query = "DELETE FROM restrictions WHERE Student1 = '" . $id . "' OR Student2 = '" . $id . "'";
+$results2 = $check->fetch_array(MYSQLI_NUM);
+
+// Now that I have both IDs, I can remove them from the list
+$query = "DELETE FROM restrictions WHERE Student1 = '" . $results[0] . "' AND Student2 = '" . $results2[0] . "'";
 $check = mysqli_query($conn, $query);
 
 if ($check == FALSE) { 
