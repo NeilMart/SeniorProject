@@ -22,7 +22,7 @@ if (isset($_SESSION['loggedin'])) {
   <body>
     <header class="sticky-title-bar">
       <a class="return" href="javascript:history.back()"><img src="../images/icons8-back-arrow-50.png" alt="Back Arrow"></a>
-      <h1 class="title">View Permissions</h1>
+      <h1 class="title">Restrictions</h1>
       <a class="signout" href="../index.html"><button class="so-button">Sign Out</button></a>
     </header>
     <main>

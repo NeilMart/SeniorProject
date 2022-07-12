@@ -55,6 +55,67 @@ if (isset($_REQUEST['submit'])) {
     $response[0] = true;
     $jsonResponse = json_encode($response);
 		echo($jsonResponse);
+
+    // Now I need to iterate through all of the restrictions, making sure that
+    // they're all still valid
+    $query = "SELECT Student1 FROM restrictions";
+    $check = mysqli_query($conn, $query);
+
+    if ($check == FALSE) { 
+      die("could not execute statement $query<br />");
+    }
+
+    if (mysqli_num_rows($check) != 0) {
+      while ($row = $check->fetch_row()) {
+        $query = "SELECT id FROM student WHERE id = '" . $row[0] . "'";
+        $possibleResponse = mysqli_query($conn, $query);
+
+        if ($possibleResponse == FALSE) { 
+          die("could not execute statement $query<br />");
+        }
+
+        // If the student no longer exists, I remove their entry from the
+        // student restrictions table
+        if (mysqli_num_rows($possibleResponse) == 0) {
+          $query = "DELETE FROM restrictions WHERE Student1 = '" . $row[0] . "'";
+          $removeEntries = mysqli_query($conn, $query);
+
+          if ($removeEntries == FALSE) { 
+            die("could not execute statement $query<br />");
+          }
+        }
+      }
+    }
+
+    // I need to now iterate through the 2nd row of restrictions
+    $query = "SELECT Student2 FROM restrictions";
+    $check = mysqli_query($conn, $query);
+
+    if ($check == FALSE) { 
+      die("could not execute statement $query<br />");
+    }
+
+    if (mysqli_num_rows($check) != 0) {
+      while ($row = $check->fetch_row()) {
+        $query = "SELECT id FROM student WHERE id = '" . $row[0] . "'";
+        $possibleResponse = mysqli_query($conn, $query);
+
+        if ($possibleResponse == FALSE) { 
+          die("could not execute statement $query<br />");
+        }
+
+        // If the student no longer exists, I remove their entry from the
+        // student restrictions table
+        if (mysqli_num_rows($possibleResponse) == 0) {
+          $query = "DELETE FROM restrictions WHERE Student2 = '" . $row[0] . "'";
+          $removeEntries = mysqli_query($conn, $query);
+
+          if ($removeEntries == FALSE) { 
+            die("could not execute statement $query<br />");
+          }
+        }
+      }
+    }
   } else {
     $response[0] = false;
 		$jsonResponse = json_encode($response);
