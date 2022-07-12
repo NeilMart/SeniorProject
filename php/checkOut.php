@@ -65,6 +65,67 @@ if (mysqli_num_rows($check) != 0) {
   exit();
 }
 
+// Use the ID of student 1 to find all of its associations, checking whether
+// a forbidden student has already checked out
+$stmt = "SELECT Student2 FROM restrictions WHERE Student1 = '" . $id . "' ";
+$result = mysqli_query($conn, $stmt);
+
+if ($result == FALSE) { 
+  die ("could not execute statement $stmt<br />");
+}
+
+// Find out who is currently in the hall
+$stmt = "SELECT id FROM hallmonitor";
+$hall = mysqli_query($conn, $stmt);
+
+if ($hall == FALSE) { 
+  die ("could not execute statement $stmt<br />");
+}
+
+$studentsInHall = array();
+while ($row = $hall->fetch_row()) {
+  array_push($studentsInHall, $row[0]);
+}
+
+
+if (mysqli_num_rows($result) != 0) {
+  while ($row = $result->fetch_row()) {
+		foreach($studentsInHall as &$value) {
+			if ($row[0] == $value) {
+				$response[0] = false;
+				$response[1] = "The halls are full";
+				$jsonResponse = json_encode($response);
+				echo($jsonResponse);
+				exit();
+			}
+    }
+		unset($value);
+  }
+}
+
+// Do the same as above but in reverse, just to be extra careful with it
+$stmt = "SELECT Student1 FROM restrictions WHERE Student2 = '" . $id . "' ";
+$result = mysqli_query($conn, $stmt);
+
+if ($result == FALSE) { 
+  die ("could not execute statement $stmt<br />");
+}
+
+if (mysqli_num_rows($result) != 0) {
+  while ($row = $result->fetch_row()) {
+		foreach($studentsInHall as &$value) {
+			if ($row[0] == $value) {
+				$response[0] = false;
+				$response[1] = "The halls are full";
+				$jsonResponse = json_encode($response);
+				echo($jsonResponse);
+				exit();
+			}
+    }
+		unset($value);
+  }
+}
+
 // Uses the student's ID to grab their name
 $query = "SELECT name FROM student WHERE id = '" . $id . "'";
 
@@ -90,10 +151,6 @@ if (mysqli_num_rows($check) == 0) {
 	echo($jsonResponse);
   exit();
 } 
-
-// else if () {
-// 
-// }
 
 // The student exists, but they can only be released if there are fewer than ten
 // students in the halls at this point in time
