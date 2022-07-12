@@ -82,6 +82,7 @@ if ($hall == FALSE) {
   die ("could not execute statement $stmt<br />");
 }
 
+// Load the hall into an array
 $studentsInHall = array();
 while ($row = $hall->fetch_row()) {
   array_push($studentsInHall, $row[0]);
@@ -99,6 +100,8 @@ if (mysqli_num_rows($result) != 0) {
 				exit();
 			}
     }
+
+		// Have to free up this memory for each iteration of the loop
 		unset($value);
   }
 }
@@ -122,6 +125,8 @@ if (mysqli_num_rows($result) != 0) {
 				exit();
 			}
     }
+
+		// Have to free up this memory for each iteration of the loop
 		unset($value);
   }
 }
