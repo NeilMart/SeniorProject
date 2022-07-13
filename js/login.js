@@ -30,11 +30,14 @@ window.addEventListener("pageshow", function() {
 accessForm.onsubmit = function(event) {
   event.preventDefault();
 
+  const destination = document.getElementById("status");
+
   const username = document.getElementById("username");
   const password = document.getElementById("password");
   
   xmlhttp.open("POST", "./php/login.php?username=" + username.value + 
-                                     "&password=" + password.value, true);
+                                     "&password=" + password.value +
+                                     "&destination=" + destination.value, true);
   xmlhttp.send();
   password.value = "";
 }
@@ -42,22 +45,24 @@ accessForm.onsubmit = function(event) {
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     var decodeResponse = JSON.parse(this.responseText);
-    if (decodeResponse[1] === false) {
+    if (decodeResponse[1] == false) {
       errorText.style.display = "block";
       errorBox.style.display = "block";
       errorText.innerText = decodeResponse[0];
-    } else { // the user provided valid credentials
-      const destination = document.getElementById("status");
+    } else { // The user provided valid credentials
       errorText.style.display = "none";
       errorBox.style.display = "none";
 
+      window.location.href = decodeResponse[0];
+
       // The application's default destination is the signout splash screen, but
       // certain approved users might get thrown onto the admin page instead
-      if (destination.value == "teacher") {
-        window.location.href = './teacher/homepage.php';
-      } else if (destination.value == "admin") {
-        window.location.href = './admin/menu.php';
-      }
+
+      // if (destination.value == "teacher") {
+      //   window.location.href = './teacher/homepage.php';
+      // } else if (destination.value == "admin") {
+      //   window.location.href = './admin/menu.php';
+      // }
     }
   }
 }

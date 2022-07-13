@@ -5,7 +5,7 @@
  ******************************************************************************/
 
 session_start();
-if (isset($_SESSION['loggedin'])) {
+if (isset($_SESSION['loggedin'], $_SESSION['admin'])) {
 ?>
 
 <!DOCTYPE html>
