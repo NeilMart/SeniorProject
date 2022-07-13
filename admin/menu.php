@@ -27,7 +27,6 @@ if (isset($_SESSION['loggedin'])) {
         <button type="submit" class="full-width" formaction="./viewHallway.php">View Hallway</button>
         <button type="submit" class="full-width" formaction="./addRemove.php">Manage Students</button>
         <button type="submit" class="full-width" formaction="./staffMenu.php">Manage Staff</button>
-        <button type="submit" class="full-width" formaction="./stuPermission.php">Student Permissions</button>
       </form>
     </main>
     <footer class="footer">@Produced in 2022</footer>

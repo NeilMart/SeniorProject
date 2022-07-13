@@ -8,6 +8,7 @@
  ******************************************************************************/
 
 var triggerRemoval = document.getElementsByClassName("remove-entry");
+var adminRights    = document.getElementsByClassName("has-admin");
 
 var xmlhttp = new XMLHttpRequest(); // AJAX that is used to remove staff
 
@@ -19,8 +20,8 @@ for (var i = 0; i < triggerRemoval.length; i++) {
 
     // Due to the nature of an HTML table, I can get away with just looking at 
     // row adjacent table entries
-    var name     = this.previousElementSibling.innerText;
-    var username = this.previousElementSibling.previousElementSibling.innerText;
+    var name     = this.previousElementSibling.previousElementSibling.innerText;
+    var username = this.previousElementSibling.previousElementSibling.previousElementSibling.innerText;
 
     // Confirmation before deletion is typically a good thing, especially given
     // the accident potential of my current input method
@@ -35,5 +36,13 @@ for (var i = 0; i < triggerRemoval.length; i++) {
 xmlhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
     location.reload();
+  }
+}
+
+for (var i = 0; i < adminRights.length; i++) {
+  if (adminRights[i].innerText == "1") {
+    adminRights[i].innerText = "Yes";
+  } else {
+    adminRights[i].innerText = "No";
   }
 }

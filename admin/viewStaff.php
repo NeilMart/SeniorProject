@@ -32,7 +32,8 @@ if (isset($_SESSION['loggedin'])) {
             <tr>
               <th>Username
               <th>Name
-              <th>Delete
+              <th>Has Admin
+              <th class="delete-header">Delete
             </tr>
           </thead>
           <tbody>
@@ -54,7 +55,7 @@ if (isset($_SESSION['loggedin'])) {
               }
 
               // The staff member's names are listed in alphabetical order
-              $stmt = "Select username, name from users ORDER BY name";
+              $stmt = "Select username, name, admin from users ORDER BY name";
               $result = mysqli_query($conn, $stmt);
               
               if ($result == FALSE) { 
@@ -67,6 +68,7 @@ if (isset($_SESSION['loggedin'])) {
                 print "<tr>\n";
                 print "  <td>" . $row[0] . "\n"; // username
                 print "  <td>" . $row[1] . "\n"; // name
+                print "  <td class='has-admin'>" . $row[2] . "\n"; // admin rights
 
                 // This is a feature that allows the admin to remove a student
                 // by clicking on an "x" that is on the far right of their entry

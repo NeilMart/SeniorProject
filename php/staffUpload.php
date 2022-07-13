@@ -17,7 +17,7 @@ if (mysqli_connect_errno()) {
 }
 
 // Don't really want to try and grab a variable that doesn't exist
-if (!isset($_REQUEST['name'], $_REQUEST['username'], $_REQUEST['password'], $_REQUEST['pin'])) {
+if (!isset($_REQUEST['name'], $_REQUEST['username'], $_REQUEST['password'], $_REQUEST['pin'], $_REQUEST['hasAdmin'])) {
 	header("Location: ../index.html");
 	exit();
 }
@@ -26,6 +26,7 @@ $name     = $_REQUEST['name'];
 $username = $_REQUEST['username'];
 $password = $_REQUEST['password'];
 $pin      = $_REQUEST['pin'];
+$hasAdmin = $_REQUEST['hasAdmin'];
 
 // Checks for the provided username within the SQL database
 $query = "SELECT username FROM users WHERE username = '" . $username . "'";
@@ -47,7 +48,7 @@ if (mysqli_num_rows($check) != 0) {
 
 // Now that we know the username does not exist, we are able to enter it into
 // the SQL database
-$query = "INSERT INTO users (name, username, password, pin) VALUES ('" . $name . "', '" . $username . "', '" . $password . "', '" . $pin . "')";
+$query = "INSERT INTO users (name, username, password, pin, admin) VALUES ('" . $name . "', '" . $username . "', '" . $password . "', '" . $pin . "', '" . $hasAdmin . "')";
 $check = mysqli_query($conn, $query);
 
 if ($check == FALSE) { 

@@ -11,6 +11,7 @@ var name         = document.getElementById("name");
 var username     = document.getElementById("username");
 var password     = document.getElementById("password");
 var pin          = document.getElementById("pin");
+var adminRights  = document.getElementById("admin");
 var topErrorText = document.getElementById("error-text-top");
 var topErrorZone = document.getElementById("error-message-top");
 
@@ -22,13 +23,29 @@ window.addEventListener("pageshow", function() {
   topErrorZone.style.display = "none";
 });
 
+// This allows the user to check the box with their enter key, which prevents
+// the form from also being submitted
+adminRights.addEventListener("keypress", function(event) {
+  if (event.key == "Enter") {
+    event.preventDefault();
+    adminRights.click();
+  }
+});
+
 pageForm.onsubmit = function(event) {
   event.preventDefault();
+
+  var hasAdmin = 0;
+
+  if (adminRights.checked) {
+    hasAdmin = 1;
+  }
 
   xmlhttp.open("POST", "../php/staffUpload.php?name=" + name.value + 
                                     "&username=" + username.value  +
                                     "&password=" + password.value  +
-                                    "&pin="      + pin.value, true);
+                                    "&pin="      + pin.value +
+                                    "&hasAdmin=" + hasAdmin, true);
   xmlhttp.send();
   pageForm.reset();
 }

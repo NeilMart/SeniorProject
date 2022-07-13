@@ -204,6 +204,24 @@ form {
   font-size: 20px;
 }
 
+.delete-header {
+  text-align: center;
+}
+
 .remove-entry {
+  text-align: center;
+}
+
+.remove-entry:hover {
   cursor: pointer;
+  color: red;
+  border: 2px solid black;
+}
+
+#admin-text {
+  font-size: 30px;
+  text-align: left;
+  display: grid;
+  grid-template-columns: 1em auto;
+  gap: 0.5em;
 }

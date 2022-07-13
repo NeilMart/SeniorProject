@@ -32,7 +32,7 @@ if (isset($_SESSION['loggedin'])) {
             <tr>
               <th>Name
               <th>ID
-              <th>Delete
+              <th class="delete-header">Delete
             </tr>
           </thead>
           <tbody>

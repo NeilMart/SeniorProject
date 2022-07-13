@@ -33,6 +33,10 @@ if (isset($_SESSION['loggedin'])) {
         <input type="text" name="username" id="username" placeholder="Username" class="full-width" required>
         <input type="text" name="password" id="password" placeholder="Password" class="full-width" required>
         <input type="text" name="pin" id="pin" placeholder="PIN" class="full-width" required>
+        <label class="full-width" id="admin-text">
+          <input type="checkbox" id="admin" name="admin" value="True">
+          Admin Privileges
+        </label>
         <input type="submit" value="Add Staff Member" id="submit" class="full-width">
       </form>
     </main>
