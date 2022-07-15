@@ -39,6 +39,8 @@ xmlhttp.onreadystatechange = function() {
   }
 }
 
+// My SQL database is configured to store user privileges as integer data, so 
+// this makes the data a little more readable
 for (var i = 0; i < adminRights.length; i++) {
   if (adminRights[i].innerText == "1") {
     adminRights[i].innerText = "Yes";

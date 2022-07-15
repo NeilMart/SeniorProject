@@ -35,8 +35,9 @@ adminRights.addEventListener("keypress", function(event) {
 pageForm.onsubmit = function(event) {
   event.preventDefault();
 
+  // When creating a user, this is the one time to give them an option to be an
+  // admin
   var hasAdmin = 0;
-
   if (adminRights.checked) {
     hasAdmin = 1;
   }

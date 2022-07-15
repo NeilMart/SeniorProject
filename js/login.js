@@ -53,16 +53,9 @@ xmlhttp.onreadystatechange = function() {
       errorText.style.display = "none";
       errorBox.style.display = "none";
 
+      // The location is provided by the server, depending on where the user
+      // wanted to go and where they are allowed to go
       window.location.href = decodeResponse[0];
-
-      // The application's default destination is the signout splash screen, but
-      // certain approved users might get thrown onto the admin page instead
-
-      // if (destination.value == "teacher") {
-      //   window.location.href = './teacher/homepage.php';
-      // } else if (destination.value == "admin") {
-      //   window.location.href = './admin/menu.php';
-      // }
     }
   }
 }
