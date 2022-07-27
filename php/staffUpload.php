@@ -24,8 +24,8 @@ if (!isset($_REQUEST['name'], $_REQUEST['username'], $_REQUEST['password'], $_RE
 
 $name     = $_REQUEST['name'];
 $username = $_REQUEST['username'];
-$password = $_REQUEST['password'];
-$pin      = $_REQUEST['pin'];
+$password = password_hash($_REQUEST['password'], PASSWORD_ARGON2I);
+$pin      = password_hash($_REQUEST['pin'], PASSWORD_ARGON2I);
 $hasAdmin = $_REQUEST['hasAdmin'];
 
 // Checks for the provided username within the SQL database

@@ -5,9 +5,6 @@
  * 
  * JS: login.js
  ******************************************************************************/
-
-session_start();
-
 $DATABASE_HOST = 'localhost';
 $DATABASE_USER = 'root';
 $DATABASE_PASS = 'TiwIsamd8ta.';
@@ -30,11 +27,11 @@ if ($stmt = $conn->prepare('SELECT username, password FROM users WHERE username 
 
 	// Only move forward if the username actually exists
 	if ($stmt->num_rows > 0) {
-		$stmt->bind_result($username, $password);
+		$stmt->bind_result($username, $hashpassword);
 		$stmt->fetch();
 		
 		// We know the username exists, but does the password match?
-		if ($_REQUEST['password'] == $password) {
+		if (password_verify($_REQUEST['password'], $hashpassword)) {
 
 			// I use the now existant username to see what this user's permissions are
 			$destination = $_REQUEST['destination'];
@@ -52,7 +49,7 @@ if ($stmt = $conn->prepare('SELECT username, password FROM users WHERE username 
 			// check whether or not they're allowed
 			if ($destination == "admin") {
 				if ($userRights[0] == "1") {
-					session_regenerate_id();
+					session_start();
 					$_SESSION['loggedin'] = TRUE;
 					$_SESSION['admin'] = TRUE;
 					$_SESSION['name'] = $username;
@@ -73,7 +70,7 @@ if ($stmt = $conn->prepare('SELECT username, password FROM users WHERE username 
 
 			// The user is trying to access the teacher portion of the application, 
 			// and requires no authorization to enter
-			session_regenerate_id();
+			session_start();
 			$_SESSION['loggedin'] = TRUE;
 			$_SESSION['name'] = $_REQUEST['username'];
 

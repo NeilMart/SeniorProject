@@ -44,7 +44,7 @@ if ($check == FALSE) {
 $databasePIN = $check->fetch_array(MYSQLI_NUM);
 
 // The code should only move forward if the teacher has provided the correct PIN
-if ($pin == $databasePIN[0]) {
+if (password_verify($pin, $databasePIN[0])) {
   $DATABASE_HOST = 'localhost';
   $DATABASE_USER = 'root';
   $DATABASE_PASS = 'TiwIsamd8ta.';
