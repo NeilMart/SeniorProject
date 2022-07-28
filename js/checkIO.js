@@ -13,25 +13,56 @@ var linkTarget = ""; // Just initializing some variables, nothing exciting
 var currentTime = 0;
 
 var checkOutButton = document.getElementById("checkout");
+var closeDialog    = document.getElementById("close-popup");
+var overrideForm   = document.getElementById("formPopup");
+var overrideFormAc = document.getElementById("override-form");
 var checkInButton  = document.getElementById("checkin");
 var pageForm       = document.getElementById("page-form");
 var studentID      = document.getElementById("student-id");
+var teacherPIN     = document.getElementById("pin");
 var errorText      = document.getElementById("error");
 var errorZone      = document.getElementById("error-message");
 var topErrorText   = document.getElementById("error-text-top");
 var topErrorZone   = document.getElementById("error-message-top");
+var popErrorText   = document.getElementById("pop-error-text");
+var popErrorZone   = document.getElementById("pop-error-message");
 
 var xmlhttp   = new XMLHttpRequest(); // AJAX for check out
+var pophttp   = new XMLHttpRequest(); // AJAX for popup
 var cixmlhttp = new XMLHttpRequest(); // AJAX for check in
 var olxmlhttp = new XMLHttpRequest(); // AJAX on load
 
 checkOutButton.addEventListener("click", grabButtonValue);
 checkInButton.addEventListener("click", grabButtonValue);
 
+// Create the button used for overriding whether or not a student can check out
+// of a room
+var overrideButton = document.createElement("button");
+    overrideButton.addEventListener("click", function(event) {
+      openForm();
+    })
+    overrideButton.style.fontSize = "15px";
+    overrideButton.style.marginBottom = "10px";
+    overrideButton.textContent = "Override";
+
+// Simple function used to show an onscreen popup
+function openForm() {
+  overrideForm.style.display = "block";
+  teacherPIN.focus();
+}
+
+// Simple function used to hide an onscreen popup
+function closeForm() {
+  overrideForm.style.display = "none";
+}
+
 window.addEventListener("pageshow", function() {
   pageForm.reset();
+  closeForm();
   errorText.style.display = "none";
   errorZone.style.display = "none";
+  popErrorText.style.display = "none";
+  popErrorZone.style.display = "none";
   topErrorText.style.display = "none";
   topErrorZone.style.display = "none";
 
@@ -56,13 +87,21 @@ pageForm.addEventListener("submit", function(event) {
     if (linkTarget == "checkout") {
       xmlhttp.open("POST", "../php/checkOut.php?id=" + studentID.value, true);
       xmlhttp.send();
-      pageForm.reset();
     } else if (linkTarget == "checkin") {
       cixmlhttp.open("POST", "../php/checkIn.php?id=" + studentID.value, true);
       cixmlhttp.send();
       pageForm.reset();
     }
   }
+});
+
+overrideFormAc.addEventListener("submit", function(event) {
+  event.preventDefault();
+
+  pophttp.open("POST", "../php/verifyPIN.php?pin=" + teacherPIN.value + "&id=" + studentID.value, true);
+  pophttp.send();
+
+  overrideFormAc.reset();
 });
 
 // Very simple one-line function that is used to figure out which of the two 
@@ -93,6 +132,7 @@ studentID.addEventListener("input", function() {
 });
 
 xmlhttp.onreadystatechange = function() {
+  closeForm();
   if (this.readyState == 4 && this.status == 200) {
     var decodeResponse = JSON.parse(this.responseText);
     if (decodeResponse[0]) {
@@ -100,6 +140,18 @@ xmlhttp.onreadystatechange = function() {
       topErrorZone.style.display = "none";
       window.location.href = './location.php';
     } else { // something went wrong when you checked out
+
+      // PHP files sends a notification that this is a "hall full" error and not
+      // something else
+      if (!topErrorZone.contains(overrideButton) && decodeResponse[2]) {
+        topErrorZone.appendChild(overrideButton);
+      } else { // Remove the button if we are in the wrong state
+        if (topErrorZone.contains(overrideButton) && !decodeResponse[2]) {
+          topErrorZone.removeChild(overrideButton);
+        }
+      }
+
+      // Finally, display the erorr that happened
       topErrorText.style.display = "block";
       topErrorZone.style.display = "block";
       topErrorText.innerText = decodeResponse[1];
@@ -107,7 +159,13 @@ xmlhttp.onreadystatechange = function() {
   }
 }
 
+// Simple function used to close the popup when the "x" is pressed by a user
+closeDialog.addEventListener("click", function(event) {
+  closeForm();
+})
+
 cixmlhttp.onreadystatechange = function() {
+  closeForm();
   if (this.readyState == 4 && this.status == 200) {
     var decodeResponse = JSON.parse(this.responseText);
     if (decodeResponse[0]) {
@@ -118,6 +176,24 @@ cixmlhttp.onreadystatechange = function() {
       topErrorText.style.display = "block";
       topErrorZone.style.display = "block";
       topErrorText.innerText = decodeResponse[1];
+    }
+  }
+}
+
+pophttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    var decodeResponse = JSON.parse(this.responseText);
+    if (decodeResponse[0]) {
+      topErrorText.style.display = "none";
+      topErrorZone.style.display = "none";
+      popErrorText.style.display = "none";
+      popErrorZone.style.display = "none";
+
+      window.location.href = './location.php';
+    } else {
+      popErrorText.style.display = "block";
+      popErrorZone.style.display = "block";
+      popErrorText.innerText = decodeResponse[1];
     }
   }
 }

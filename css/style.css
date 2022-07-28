@@ -112,6 +112,38 @@ form {
   padding: 20px 200px 20px 200px;
 }
 
+.override-form {
+  background-color: #fff;
+  padding: 0px 200px 20px 200px
+}
+
+.loginPopup {
+  position: absolute;
+  display: grid;
+  grid-column: 1fr 1fr 1fr;
+  grid-gap: 10px;
+  width: 100%;
+}
+
+.formPopup {
+  border: 3px solid #999999;
+  grid-column: 2 / 3;
+  max-width: 800px;
+  z-index: 9;
+  background-color: white;
+}
+
+.close-popup {
+  font-size: 30px;
+  padding: 10px 20px 0px 0px;
+  margin: 0px;
+  text-align: right;
+}
+
+.close-popup:hover {
+  cursor: pointer;
+}
+
 .full-width {
   grid-column: 1 / 3;  
 }

@@ -60,6 +60,7 @@ if ($check == FALSE) {
 if (mysqli_num_rows($check) != 0) {
 	$response[0] = false;
   $response[1] = "You've already checked out...";
+	$response[2] = false;
 	$jsonResponse = json_encode($response);
 	echo($jsonResponse);
   exit();
@@ -95,6 +96,7 @@ if (mysqli_num_rows($result) != 0) {
 			if ($row[0] == $value) {
 				$response[0] = false;
 				$response[1] = "The halls are full";
+				$response[2] = true;
 				$jsonResponse = json_encode($response);
 				echo($jsonResponse);
 				exit();
@@ -120,6 +122,7 @@ if (mysqli_num_rows($result) != 0) {
 			if ($row[0] == $value) {
 				$response[0] = false;
 				$response[1] = "The halls are full";
+				$response[2] = true;
 				$jsonResponse = json_encode($response);
 				echo($jsonResponse);
 				exit();
@@ -152,6 +155,7 @@ if ($total == FALSE) {
 if (mysqli_num_rows($check) == 0) {
 	$response[0] = false;
   $response[1] = "No student with that ID was found";
+	$response[2] = false;
 	$jsonResponse = json_encode($response);
 	echo($jsonResponse);
   exit();
@@ -179,6 +183,7 @@ else if (mysqli_num_rows($total) < 10) {
 } else { // There are already ten students in the hallway
 	$response[0] = false;
   $response[1] = "The halls are full";
+	$response[2] = true;
 	$jsonResponse = json_encode($response);
 	echo($jsonResponse);
   exit();

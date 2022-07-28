@@ -27,6 +27,18 @@ if (isset($_SESSION['loggedin'])) {
       <div id="error-message-top" class="error-message">
         <p id="error-text-top" class="error-text"></p>
       </div>
+      <div class="loginPopup">
+        <div class="formPopup" id="formPopup">
+          <div class="error-message" id="pop-error-message">
+            <p id="pop-error-text" class="error-text"></p>
+          </div>
+          <p class="close-popup" id="close-popup">x</p>
+          <form id="override-form" class="override-form">
+            <input type="password" name="pin" id="pin" class="full-width" placeholder="Teacher PIN" required>
+            <input type="submit" id="approve" value="Approve" name="Override" class="full-width">
+          </form>
+        </div>
+      </div>
       <form id="page-form">
         <div class="error-message" id="error-message">
           <p id="error" class="error-text"></p>
